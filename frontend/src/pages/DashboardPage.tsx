@@ -1,6 +1,8 @@
+import TaskCard from '../components/TaskCard'
 import { useEffect, useState } from 'react'
 import { fetchTasks } from '../services/taskService'
 import type { Task } from '../types/Task'
+
 
 function DashboardPage() {
   const [tasks, setTasks] = useState<Task[]>([])
@@ -40,12 +42,7 @@ function DashboardPage() {
       {!isLoading && !errorMessage && (
         <div>
           {tasks.map((task) => (
-            <article key={task.id}>
-              <p>{task.status}</p>
-              <h2>{task.title}</h2>
-              <p>{task.description}</p>
-              <p>Due: {task.dueDate}</p>
-            </article>
+            <TaskCard key={task.id} task={task} />
           ))}
         </div>
       )}
